@@ -44,3 +44,35 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+### TO DEPLOY TO GITHUB PAGES
+
+INITIAL COMMIT
+
+go to vite.config.ts
+
+and add base
+
+```
+export default defineConfig({
+  base: "/port/", 
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+});
+```
+
+I'd like to delete first the dist folder
+
+Then
+```sh
+npm run build
+
+git add -f dist && git commit -m "commit message"
+
+git subtree push --prefix dist origin gh-pages
+```
