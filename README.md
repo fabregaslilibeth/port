@@ -72,7 +72,7 @@ Then
 ```sh
 npm run build
 
-git add -f dist && git commit -m "commit message"
+git add -f dist && git commit -m "commit new build"
 
 git subtree push --prefix dist origin gh-pages
 ```
