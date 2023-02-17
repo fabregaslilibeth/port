@@ -1,1 +1,0 @@
-import{_ as t,r as o,o as s,c as a,a as n,w as c,b as r,d as _}from"./index-bd18a303.js";const d={},i={class:"bg-green-500"},l=r("h1",{className:"text-3xl font-bold underline"},"This is the about page",-1);function u(f,m){const e=o("router-link");return s(),a("div",i,[n(e,{to:"/"},{default:c(()=>[_("Home")]),_:1}),l])}const p=t(d,[["render",u]]);export{p as default};
