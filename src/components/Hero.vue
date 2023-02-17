@@ -11,19 +11,17 @@
           <h1 class="text-7xl uppercase font-extrabold text-accent reveal">
             Lilibeth Fabregas
           </h1>
-          <!-- <p class="text-5xl uppercase font-semibold tracking-wider pt-4">
-            CPA. Web Developer.
-          </p> -->
-          <div class="relative w-90 my-4">
-            <div class="font-cursive text-4xl text-center">
-              CPA. Web Developer.
+          <div class="relative my-4">
+            <div class="font-cursive text-3xl text-center">
+              <span class="text-reveal">Certified Public Accountant.</span>
+              <span class="text-reveal"> Web Developer.</span>
             </div>
-            <div class="w-24 ml-auto -mt-2">
+            <div class="w-24 ml-auto -mt-2 custom-underline">
               <icons-underline />
             </div>
           </div>
 
-          <div class="relative w-80 my-8 cursor-pointer">
+          <div class="relative w-80 my-8 cursor-pointer btn-group">
             <div
               class="border border-accent rounded-full px-20 h-16 text-xl uppercase tracking-wider flex items-center font-extrabold custom-btn"
             >
@@ -67,20 +65,41 @@ onMounted(() => {
     fade();
   }, 200);
 });
-
+let tl = gsap.timeline();
 const fade = () => {
-  gsap.to(".char", {
+  tl.to(".char", {
     scale: 1,
     ease: "elastic",
     transformOrigin: "50% 50%",
     stagger: 0.1,
     duration: 2,
   });
+  tl.to(
+    ".text-reveal",
+    {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      stagger: 0.3,
+    },
+    "-=2.2"
+  );
+  tl.to(".custom-underline", {
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  });
 };
 </script>
 
 <style>
 .char {
-  scale: 1.2;
+  scale: 1.1;
+}
+
+.text-reveal {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: all 1.5s;
+  transform: translateY(-3em);
+}
+
+.custom-underline {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 </style>

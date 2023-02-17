@@ -5,8 +5,6 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/main.css";
-import "./assets/js/projects.js";
-import "./assets/js/skills.js";
 
 const app = createApp(App);
 

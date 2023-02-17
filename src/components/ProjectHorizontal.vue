@@ -1,11 +1,9 @@
 <template>
-  <div class="w-96 h-48 mx-auto relative my-8 bg-white">
-    SDS
-  </div>
+  <div class="col-span-3 md:col-span-2 bg-white text-gray-900 h-52">HORI 2</div>
 </template>
 
 <style scoped>
 .horizontal {
-  width: 
+  width: 2px;
 }
 </style>

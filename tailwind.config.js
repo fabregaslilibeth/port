@@ -8,7 +8,8 @@ module.exports = {
         accent: "#ffb400",
         background: "#111111",
         secondary: "#252525",
-        border: "#625F5F",
+        navitem: "#2b2a2a",
+        border: "#625f5f",
       },
       fontFamily: {
         sans: ["Maven Pro"],
@@ -16,6 +17,7 @@ module.exports = {
       },
       spacing: {
         90: "360px",
+        108: "432px",
       },
     },
   },

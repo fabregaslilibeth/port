@@ -76,3 +76,9 @@ git add -f dist && git commit -m "commit new build"
 
 git subtree push --prefix dist origin gh-pages
 ```
+
+In case updates are rejected
+```
+git push origin --delete gh-pages
+$ git subtree push --prefix dist origin gh-pages
+```

@@ -1,0 +1,24 @@
+<template>
+  <div :class="classes">
+    <div class="ml-4">
+      <div class="flex space-x-3 items-center my-4">
+        <icons-bullet />
+        <div>
+          <p class="text-accent font-extrabold text-xl">
+            Web Development Bootcamp
+          </p>
+          <p class="font-semibold text-md">Zuitt Makati</p>
+          <p class="font-semibold text-md">Aug 2022 - Jan 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import IconsBullet from "../components/icons/bullet.vue";
+defineProps({
+  // project: Object,
+  classes: String,
+});
+</script>

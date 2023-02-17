@@ -12,12 +12,12 @@
   transition: all 300ms cubic-bezier(1, 0.02, 0.35, 1);
 }
 
-.custom-btn:hover {
+.btn-group:hover .custom-btn {
   background-position: right bottom;
   color: white;
 }
 
-.custom-btn:hover + .icon {
+.btn-group:hover + .icon {
   /* border-left: 1px solid white; */
   background: #ffae00;
 }

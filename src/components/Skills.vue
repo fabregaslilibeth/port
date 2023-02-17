@@ -5,19 +5,18 @@
     >
       SKILLS
     </div> -->
-    <div v-for="(skill, index) in skills" :key="index" class="">
+    <!-- <div v-for="(skill, index) in skills" :key="index" class="">
       <img
         :src="`../../src/assets/${skill.image}`"
         :alt="`${skill.name} Logo`"
         class="w-16 filter duration-200 grayscale hover:grayscale-0"
       />
-    </div>
-
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import skills from "../../src/assets/js/skills.js";
+// import skills from "../../src/assets/js/skills.js";
 </script>
 
 <style scoped>

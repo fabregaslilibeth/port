@@ -1,130 +1,155 @@
 <template>
-  <div>
+  <div class="mb-40" id="projects">
     <div class="relative w-48 mx-auto">
       <div class="font-cursive text-4xl text-center">Projects</div>
-      <div class="w-24 ml-auto -mt-2">
+      <div class="w-24 ml-auto -mt-2 custom-project-underline">
         <icons-underline />
       </div>
     </div>
 
     <div class="flex my-8 w-3/12 mx-auto">
-      <div class="relative mx-auto w-8 group cursor-pointer">
+      <div
+        class="relative mx-auto group cursor-pointer"
+        v-for="(item, index) in navItems"
+        :key="index"
+        :class="item.class"
+      >
         <div
           class="absolute -top-4 -right-4 opacity-0 duration-200 group-hover:opacity-100"
+          :class="activeNav === item.name ? 'opacity-100' : 'opacity-0'"
         >
           <icons-nav-highlight />
         </div>
-        <div class="">ALL</div>
-      </div>
-      <div class="relative mx-auto w-16 group cursor-pointer">
-        <div
-          class="absolute -top-4 -right-4 opacity-0 duration-200 group-hover:opacity-100"
-        >
-          <icons-nav-highlight />
+        <div @click="setActiveNav(item.name)" class="uppercase">
+          {{ item.name }}
         </div>
-        <div class="">LARAVEL</div>
-      </div>
-      <div class="relative mx-auto w-8 group cursor-pointer">
-        <div
-          class="absolute -top-4 -right-4 opacity-0 duration-200 group-hover:opacity-100"
-        >
-          <icons-nav-highlight />
-        </div>
-        <div class="">VUE</div>
-      </div>
-      <div class="relative mx-auto w-12 group cursor-pointer">
-        <div
-          class="absolute -top-4 -right-4 opacity-0 duration-200 group-hover:opacity-100"
-        >
-          <icons-nav-highlight />
-        </div>
-        <div class="">REACT</div>
       </div>
     </div>
+
     <div class="max-w-screen-lg mx-auto relative my-8 grid grid-cols-3 gap-4">
-      <div class="col-span-3 md:col-span-1 bg-white h-52">SDSD</div>
-      <div class="col-span-3 md:col-span-2 bg-white h-52">SDSD</div>
-      <div class="col-span-3 md:col-span-1 bg-white h-100">SDSD</div>
-      <div class="grid grid-cols-1 gap-4">
-        <div class="col-span-1 bg-white h-52">SDSD</div>
-        <div class="col-span-1 bg-white h-48">SDSD</div>
+      <div
+        v-for="(project, index) in filteredProjects"
+        :key="project.slug"
+        :class="getClass(index)"
+      >
+        <project :project="project"></project>
       </div>
-      <div class="col-span-3 md:col-span-1 bg-white h-100">SDSD</div>
-      <!-- <div v-for="(project, index) in displayedProjects" :key="project.slug">
-        <div class="md:flex md:items-center">
-          <div class="flex justify-between w-1/2">
-            <div class="banner w-full" style=""></div>
-          </div>
-          <div class="w-full md:w-1/2" :class="index % 2 && 'md:order-first'">
-            <p class="font-extrabold text-2xl">
-              {{ index + 1 }} {{ project.name }}
-            </p>
-            <p class="my-4">{{ project.description }}</p>
-            <div
-              class="md:flex items-center my-8 space-x-20"
-              :class="index % 2 ? 'justify-end' : 'justify-start'"
-            >
-              <div class="flex space-x-2">
-                <button class="bg-gray-400 rounded-full px-8 py-2">
-                  View Code
-                </button>
-              </div>
-              <div class="flex space-x-2">
-                <div v-for="tag in project.categories" :key="tag">
-                  <span
-                    class="bg-gray-400 border border-gray-300 px-4 py-1 rounded-full text-xs uppercase font-semibold"
-                    >{{ tag }}</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="text-center">
-        <p class="text-xs">
-          Showing {{ displayedProjects.length }} of {{ projects.length }}
-        </p>
-        <button v-if="hasMore()" @click="showMore()">Show More &#8594;</button>
-        <button v-else @click="showLess()">Show Less</button>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, watch } from "vue";
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 import IconsUnderline from "../components/icons/underline.vue";
 import IconsNavHighlight from "../components/icons/navhighlight.vue";
-import ProjectRegular from "../components/ProjectRegular.vue";
-import { ref, computed } from "vue";
-import projects from "../../src/assets/js/projects.js";
+import Project from "../components/Project.vue";
 
-const interval = ref(3);
+import { useScroll } from "../composables/scroll.js";
+import { useNav } from "../composables/nav.js";
 
-const displayedProjects = computed(() => {
-  return projects.slice(0, interval.value);
+import projects from "@/assets/js/projects.js";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const { navStore } = useNav(); // text reveal && nav
+const { shouldShow } = useScroll("projects"); // text reveal && nav
+
+onMounted(() => {
+  setInterval(() => {
+    fade();
+  }, 200);
 });
 
-const hasMore = () => {
-  if (projects.length === displayedProjects.value.length) {
-    return false;
+watch(
+  () => shouldShow,
+  () => {
+    if (shouldShow.value) {
+      textReveal();
+      navStore.setNav("Works");
+    }
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
+
+const textReveal = () => {
+  tl.to(".about-text-reveal", {
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", //square
+    ease: "ease-in",
+    stagger: 0.3,
+    delay: 0.4,
+  });
+};
+
+let tl = gsap.timeline();
+const fade = () => {
+  tl.to(".custom-project-underline", {
+    scrollTrigger: ".custom-project-underline",
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  });
+};
+
+const navItems = ref([
+  {
+    name: "All",
+    class: "w-8",
+  },
+  {
+    name: "Laravel",
+    class: "w-16",
+  },
+  {
+    name: "Vue",
+    class: "w-8",
+  },
+  {
+    name: "React",
+    class: "w-12",
+  },
+]);
+const activeNav = ref("All");
+const filteredProjects = ref([...projects]);
+
+const getClass = (index: number) => {
+  if (activeNav.value !== "All") {
+    return "col-span-3 md:col-span-1 row-span-1 bg-white text-gray-900 h-52";
+  } else if ([1].includes(index)) {
+    return "col-span-3 md:col-span-2 row-span-1 bg-white text-gray-900 h-52";
+  } else if ([2, 4].includes(index)) {
+    return "col-span-3 md:col-span-1 row-span-2 bg-white text-gray-900 h-108";
+  } else {
+    return "col-span-3 md:col-span-1 row-span-1 bg-white text-gray-900 h-52";
+  }
+};
+
+const setActiveNav = (nav: string) => {
+  activeNav.value = nav;
+  filter();
+};
+
+const filter = () => {
+  if (activeNav.value === "All") {
+    filteredProjects.value = projects;
+    return;
   }
 
-  return true;
-};
+  filteredProjects.value = [];
 
-const showMore = () => {
-  interval.value += interval.value;
-};
-
-const showLess = () => {
-  interval.value = 3;
+  projects.forEach((project) => {
+    if (project.categories.includes(activeNav.value.toLowerCase())) {
+      filteredProjects.value.push(project);
+    }
+  });
 };
 </script>
-<style scoped>
-.banner {
-  height: 400px;
-  background: url("../../src/assets/organic.png") left center no-repeat;
-  background-size: contain;
+
+<style>
+.custom-project-underline {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 </style>
