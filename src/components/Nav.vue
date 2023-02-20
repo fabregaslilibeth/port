@@ -1,10 +1,13 @@
 <template>
   <div class="">
-    <div class="relative w-auto my-4 cursor-pointer mx-auto btn-group">
+    <div
+      class="relative w-auto my-4 cursor-pointer mx-auto btn-group"
+      @click="slideTo('Home')"
+    >
       <div
         class="rounded-full text-right pr-12 h-12 flex items-center justify-end font-semibold text-xs nav-item tracking-widest opacity-0 duration-500"
       >
-        HOME 
+        HOME
       </div>
       <div
         class="absolute w-12 h-12 rounded-full top-0 right-0 flex items-center justify-center nav-icon"
@@ -14,7 +17,10 @@
       </div>
     </div>
 
-    <div class="relative my-4 cursor-pointer mx-auto btn-group">
+    <div
+      class="relative my-4 cursor-pointer mx-auto btn-group"
+      @click="slideTo('About')"
+    >
       <div
         class="rounded-full text-right pl-2 pr-12 h-12 flex items-center justify-end font-semibold text-xs nav-item opacity-0 duration-500"
       >
@@ -28,7 +34,10 @@
       </div>
     </div>
 
-    <div class="relative my-4 cursor-pointer mx-auto btn-group">
+    <div
+      class="relative my-4 cursor-pointer mx-auto btn-group"
+      @click="slideTo('Projects')"
+    >
       <div
         class="rounded-full text-right pl-2 pr-12 h-12 flex items-center justify-end font-semibold text-xs nav-item opacity-0 duration-500"
       >
@@ -42,15 +51,18 @@
       </div>
     </div>
 
-    <div class="relative my-4 cursor-pointer mx-auto btn-group">
+    <div
+      class="relative my-4 cursor-pointer mx-auto btn-group"
+      @click="slideTo('Contact')"
+    >
       <div
         class="rounded-full pl-3 pr-12 h-12 flex items-center justify-end font-semibold text-xs nav-item opacity-0 duration-500"
-        :class="nav === 'Contact' ? 'bg-accent' : 'bg-navitem'"
       >
         CONTACT
       </div>
       <div
         class="absolute w-12 h-12 rounded-full top-0 right-0 flex items-center justify-center nav-icon duration-200"
+        :class="nav === 'Contact' ? 'bg-accent' : 'bg-navitem'"
       >
         <icons-contact />
       </div>
@@ -68,6 +80,10 @@ import { useNavStore } from "@/stores/nav";
 
 const navStore = useNavStore();
 const { nav } = storeToRefs(navStore);
+
+const slideTo = (section: string) => {
+  navStore.slideToSection(section);
+};
 </script>
 
 <style scoped>
@@ -84,7 +100,6 @@ const { nav } = storeToRefs(navStore);
 }
 
 .nav-icon {
-  /* background: linear-gradient(to right, #2b2a2a 50%, #2b2a2a 50%); */
   background-size: 200% 100%;
   background-position: left bottom;
   transition: background-color 300ms cubic-bezier(1, 0.02, 0.35, 1);

@@ -28,7 +28,10 @@
 
 <script setup lang="ts">
 defineProps({
-  project: Object,
+  project: {
+    type: Object,
+    required: true,
+  },
   classes: String,
 });
 </script>

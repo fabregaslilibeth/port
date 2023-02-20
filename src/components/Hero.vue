@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div id="home" class="relative">
     <div class="flex justify-between w-full">
       <div class="w-4/12">
         <div>
@@ -21,7 +21,7 @@
             </div>
           </div>
 
-          <div class="relative w-80 my-8 cursor-pointer btn-group">
+          <div class="relative w-80 my-8 cursor-pointer btn-group custom-btn">
             <div
               class="border border-accent rounded-full px-20 h-16 text-xl uppercase tracking-wider flex items-center font-extrabold custom-btn"
             >
@@ -53,14 +53,22 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, watch } from "vue";
 import { gsap } from "gsap";
 import SplitType from "split-type";
+
+import { useScroll } from "../composables/scroll.js";
+import { useNav } from "../composables/nav.js";
+
 import IconsRectangle from "../components/icons/rectangle.vue";
 import IconsUnderline from "../components/icons/underline.vue";
 
+const { navStore } = useNav(); // text reveal && nav
+const { activeSection } = useScroll(); // text reveal && nav
+
 onMounted(() => {
   new SplitType(".reveal");
+  navStore.setNav("Home");
   setInterval(() => {
     fade();
   }, 200);
@@ -85,7 +93,25 @@ const fade = () => {
   tl.to(".custom-underline", {
     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
   });
+  tl.to(".custom-btn", {
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  });
 };
+
+watch(
+  () => activeSection,
+  () => {
+    if (activeSection.value === "home") {
+      navStore.setNav("Home");
+    } else {
+      navStore.setNav("");
+    }
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
 </script>
 
 <style>
@@ -100,6 +126,10 @@ const fade = () => {
 }
 
 .custom-underline {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+
+.custom-btn {
   clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 </style>

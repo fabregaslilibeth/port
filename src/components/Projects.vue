@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-40" id="projects">
+  <div class="pt-20" id="projects">
     <div class="relative w-48 mx-auto">
       <div class="font-cursive text-4xl text-center">Projects</div>
       <div class="w-24 ml-auto -mt-2 custom-project-underline">
@@ -49,13 +49,13 @@ import Project from "../components/Project.vue";
 
 import { useScroll } from "../composables/scroll.js";
 import { useNav } from "../composables/nav.js";
-
-import projects from "@/assets/js/projects.js";
+// @ts-ignore:
+import projects from "../../src/assets/js/projects.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const { navStore } = useNav(); // text reveal && nav
-const { shouldShow } = useScroll("projects"); // text reveal && nav
+const { activeSection } = useScroll(); // text reveal && nav
 
 onMounted(() => {
   setInterval(() => {
@@ -64,9 +64,9 @@ onMounted(() => {
 });
 
 watch(
-  () => shouldShow,
+  () => activeSection,
   () => {
-    if (shouldShow.value) {
+    if (activeSection.value === "projects") {
       textReveal();
       navStore.setNav("Works");
     }
@@ -139,7 +139,7 @@ const filter = () => {
   }
 
   filteredProjects.value = [];
-
+  // @ts-ignore:
   projects.forEach((project) => {
     if (project.categories.includes(activeNav.value.toLowerCase())) {
       filteredProjects.value.push(project);

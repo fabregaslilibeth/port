@@ -1,9 +1,9 @@
 <template>
-  <div class="relative">
-    <div class="absolute top-8 left-1/2 transform -translate-x-12">
-      <icons-arrow />
-    </div>
-    <div class="">
+  <div id="contact" class="py-20">
+    <div class="relative">
+      <div class="absolute top-12 left-1/2 transform -translate-x-12">
+        <icons-arrow />
+      </div>
       <div class="flex justify-center">
         <div class="font-cursive text-4xl text-center">Contact me</div>
         <div class="">
@@ -63,6 +63,11 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from "vue";
+
+import { useScroll } from "../composables/scroll.js";
+import { useNav } from "../composables/nav.js";
+
 import IconsPhone from "../components/icons/phone.vue";
 import IconsFacebook from "../components/icons/facebook.vue";
 import IconsYoutube from "../components/icons/youtube.vue";
@@ -70,7 +75,19 @@ import IconsArrow from "../components/icons/arrow.vue";
 import IconsEmail from "../components/icons/email.vue";
 import IconsExclamation from "../components/icons/exclamation.vue";
 
-const submit = () => {
-  alert("submitted");
-};
+const { navStore } = useNav(); // text reveal && nav
+const { activeSection } = useScroll(); // text reveal && nav
+
+watch(
+  () => activeSection,
+  () => {
+    if (activeSection.value === "contact") {
+      navStore.setNav("Contact");
+    }
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
 </script>

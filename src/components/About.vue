@@ -1,5 +1,5 @@
 <template>
-  <div class="my-20" id="about">
+  <div class="pt-20" id="about">
     <div class="relative w-52 mx-auto">
       <div class="absolute -top-12 animate-icon-sunrays">
         <icons-sunrays />
@@ -91,7 +91,7 @@ import IconsSunrays from "./icons/sunrays.vue";
 import IconsArrowRight from "./icons/arrowright.vue";
 
 const { navStore } = useNav(); // text reveal && nav
-const { shouldShow } = useScroll("about"); // text reveal && nav
+const { activeSection } = useScroll(); // text reveal && nav
 
 const start = new Date("10/1/2019");
 const present = new Date(Date.now());
@@ -109,9 +109,9 @@ onMounted(() => {
 });
 
 watch(
-  () => shouldShow,
+  () => activeSection,
   () => {
-    if (shouldShow.value) {
+    if (activeSection.value === "about") {
       textReveal();
       navStore.setNav("About");
     }
@@ -127,7 +127,7 @@ const textReveal = () => {
     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", //square
     ease: "ease-in",
     stagger: 0.3,
-    delay: 0.4,
+    delay: 0.1,
   });
 };
 
@@ -152,7 +152,7 @@ const animateSunrays = () => {
 
 <style>
 .animate-icon-sunrays svg path {
-  clip-path: polygon(80% 87%, 100% 64%, 99% 100%, 48% 100%);
+  clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
 }
 
 .about-text-reveal {
