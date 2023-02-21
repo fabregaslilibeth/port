@@ -1,34 +1,46 @@
 <template>
   <div id="home" class="relative">
     <div class="flex justify-between w-full">
-      <div class="w-4/12">
+      <div class="hidden lg:inline-block w-4/12">
         <div>
           <icons-rectangle />
         </div>
       </div>
-      <div class="w-8/12 flex items-center">
+      <div
+        class="w-11/12 h-screen lg:h-auto lg:w-8/12 flex items-center justify-center lg:justify-start mx-auto lg:mr-auto"
+      >
         <div>
-          <h1 class="text-7xl uppercase font-extrabold text-accent reveal">
+          <h1
+            class="text-4xl md:text-5xl lg:text-7xl uppercase font-extrabold text-accent lg:reveal text-center lg:text-left"
+          >
             Lilibeth Fabregas
           </h1>
           <div class="relative my-4">
-            <div class="font-cursive text-3xl text-center">
+            <div
+              class="font-cursive text-3xl text-center hidden lg:inline-block"
+            >
               <span class="text-reveal">Certified Public Accountant.</span>
               <span class="text-reveal"> Web Developer.</span>
             </div>
-            <div class="w-24 ml-auto -mt-2 custom-underline">
+            <div class="font-cursive md:text-3xl text-center lg:hidden">
+              <span>CPA.</span>
+              <span> Web Developer.</span>
+            </div>
+            <div class="w-24 ml-auto -mt-2 hidden lg:inline-block">
               <icons-underline />
             </div>
           </div>
 
-          <div class="relative w-80 my-8 cursor-pointer btn-group custom-btn">
+          <div
+            class="relative w-60 lg:w-80 my-8 cursor-pointer btn-group lg:custom-btn ml-auto mr-auto lg:ml-0"
+          >
             <div
-              class="border border-accent rounded-full px-20 h-16 text-xl uppercase tracking-wider flex items-center font-extrabold custom-btn"
+              class="border border-accent rounded-full pl-12 md:pl-8 lg:px-20 h-12 md:h-16 lg:text-xl uppercase tracking-wider flex items-center font-extrabold"
             >
               Download CV
             </div>
             <div
-              class="absolute w-16 h-16 bg-accent rounded-full top-0 right-0 flex items-center justify-center icon"
+              class="absolute w-12 md:w-16 h-12 md:h-16 bg-accent rounded-full top-0 right-0 flex items-center justify-center icon"
             >
               <svg
                 width="25"
@@ -67,11 +79,13 @@ const { navStore } = useNav(); // text reveal && nav
 const { activeSection } = useScroll(); // text reveal && nav
 
 onMounted(() => {
-  new SplitType(".reveal");
   navStore.setNav("Home");
-  setInterval(() => {
-    fade();
-  }, 200);
+  if (screen.width > 1023) {
+    new SplitType(".reveal");
+    setInterval(() => {
+      fade();
+    }, 200);
+  }
 });
 let tl = gsap.timeline();
 const fade = () => {

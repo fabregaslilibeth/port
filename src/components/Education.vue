@@ -4,11 +4,11 @@
       <div class="flex space-x-3 items-center my-4">
         <icons-bullet />
         <div>
-          <p class="text-accent font-extrabold text-xl">
+          <p class="text-accent font-extrabold md:text-xl">
             Web Development Bootcamp
           </p>
-          <p class="font-semibold text-md">Zuitt Makati</p>
-          <p class="font-semibold text-md">Aug 2022 - Jan 2023</p>
+          <p class="md:font-semibold md:text-md">Zuitt Makati</p>
+          <p class="md:font-semibold md:text-md">Aug 2022 - Jan 2023</p>
         </div>
       </div>
     </div>

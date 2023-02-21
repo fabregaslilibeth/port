@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <div class="flex my-8 w-3/12 mx-auto">
+    <div class="flex my-8 w-full md:w-6/12 lg:w-3/12 mx-auto">
       <div
         class="relative mx-auto group cursor-pointer"
         v-for="(item, index) in navItems"
@@ -49,7 +49,7 @@ import Project from "../components/Project.vue";
 
 import { useScroll } from "../composables/scroll.js";
 import { useNav } from "../composables/nav.js";
-// @ts-ignore:
+// @ts-ignore
 import projects from "../../src/assets/js/projects.js";
 
 gsap.registerPlugin(ScrollTrigger);

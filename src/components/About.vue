@@ -7,9 +7,13 @@
       <div class="font-cursive text-4xl text-right">About me</div>
     </div>
     <div class="">
-      <div class="w-11/12 mx-auto md:w-full py-20 max-w-screen-xl">
-        <div class="flex items-stretch justify-center space-x-20 mb-12">
-          <p class="w-1/2 about-text-reveal">
+      <div
+        class="w-11/12 mx-auto md:w-full py-20 max-w-screen-xl text-center lg:text-left"
+      >
+        <div
+          class="sm:flex items-stretch justify-center space-x-8 lg:space-x-20 mb-12"
+        >
+          <p class="w-full sm:w-1/2 text-center lg:text-left about-text-reveal">
             As a Full Stack Web Developer, I bring a unique perspective to my
             work thanks to my previous career in Finance and Accounting. I
             specialize in building web applications that are related to
@@ -18,7 +22,7 @@
             industries.
           </p>
           <div
-            class="border border-border py-4 px-8 rounded-md shadow-sm about-text-reveal"
+            class="lg:border border-border py-4 px-8 rounded-md shadow-sm about-text-reveal hidden md:inline-block"
           >
             <div class="text-4xl font-extrabold font-cursive text-accent">
               {{ getYears() }}<sup>+</sup> years
@@ -26,8 +30,11 @@
             <p class="text-center pt-4">Web development</p>
           </div>
         </div>
-        <div class="flex items-stretch justify-center space-x-20 mb-12">
-          <p class="w-1/2 md:ml-20 about-text-reveal">
+
+        <div
+          class="sm:flex items-stretch justify-center space-x-8 lg:space-x-20 mb-12"
+        >
+          <p class="w-full sm:w-1/2 md:ml-20 about-text-reveal">
             My experience in Accounting has taught me the importance of being
             mindful of even the smallest details. I understand that even the
             slightest error can have a significant impact on a company's bottom
@@ -38,7 +45,7 @@
             solutions to my clients.
           </p>
           <div
-            class="border border-border py-4 px-8 rounded-md shadow-sm order-first flex items-center about-text-reveal"
+            class="lg:border border-border py-4 px-8 rounded-md shadow-sm order-first flex items-center about-text-reveal hidden md:inline-block"
           >
             <div>
               <div class="text-4xl font-extrabold font-cursive text-accent">
@@ -61,15 +68,15 @@
 
         <router-link to="/about">
           <div
-            class="relative w-90 my-8 cursor-pointer mx-auto btn-group about-text-reveal"
+            class="relative w-60 lg:w-90 my-8 cursor-pointer mx-auto btn-group about-text-reveal"
           >
             <div
-              class="border border-accent rounded-full px-20 h-16 text-xl uppercase tracking-wider flex items-center font-extrabold custom-btn"
+              class="border border-accent rounded-full pl-8 lg:px-20 h-12 lg:h-16 lg:text-xl uppercase tracking-wider flex items-center font-extrabold"
             >
               More about me
             </div>
             <div
-              class="absolute w-16 h-16 bg-accent rounded-full top-0 right-0 flex items-center justify-center"
+              class="absolute w-12 lg:w-16 h-12 lg:h-16 bg-accent rounded-full top-0 right-0 flex items-center justify-center"
             >
               <icons-arrow-right />
             </div>
@@ -150,7 +157,7 @@ const animateSunrays = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .animate-icon-sunrays svg path {
   clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
 }

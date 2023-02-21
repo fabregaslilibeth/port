@@ -1,18 +1,18 @@
 <template>
   <div class="py-4">
     <div class="grid grid-cols-3 flex items-center">
-      <router-link to="/" class="col-span-1">
+      <router-link to="/" class="col-span-3 lg:col-span-1">
         <div class="flex space-x-4 items-center">
-          <icons-arrow-left />
-          <span class="text-accent text-2xl font-semibold">Home</span>
+          <icons-arrow-left class="w-12 h-8" />
+          <span class="text-accent md:text-2xl font-semibold">Home</span>
         </div>
       </router-link>
-      <div class="relative cols-span-1">
-        <div class="font-cursive text-4xl text-center">More about me</div>
+      <div class="relative col-span-3 lg:col-span-1">
+        <div class="font-cursive text-3xl md:text-4xl text-center">More about me</div>
       </div>
     </div>
 
-    <div class="flex my-8 w-3/12 mx-auto">
+    <div class="flex my-8 w-full md:w-6/12 lg:w-3/12 mx-auto">
       <div
         class="relative mx-auto group cursor-pointer"
         v-for="(item, index) in navItems"
@@ -32,27 +32,35 @@
     </div>
 
     <div>
-      <div class="uppercase font-extrabold text-2xl ml-32">Work Experience</div>
+      <div
+        class="uppercase font-extrabold text-2xl ml-2 sm:ml-4 md:ml-4 lg:ml-32"
+      >
+        Work Experience
+      </div>
       <div class="my-8">
-        <job classes="w-9/12 ml-60 mb-20" />
-        <div class="w-20 ml-108">
+        <job classes="w-9/12 ml-2 sm:ml-4 md:ml-4 lg:ml-60 mb-20" />
+        <div class="w-20 ml-2 sm:ml-4 md:ml-4 lg:ml-108">
           <icons-arrow-job-1 />
         </div>
-        <job classes="w-9/12 ml-32 mt-12 mb-20" />
-        <div class="w-full ml-60">
+        <job classes="w-9/12 ml-2 sm:ml-4 md:ml-4 lg:ml-32 mt-12 mb-20" />
+        <div class="w-full ml-2 sm:ml-4 md:ml-4 lg:ml-60">
           <icons-arrow-job-2 />
         </div>
-        <job classes="w-9/12 ml-48 mt-12 mb-20" />
-        <div class="w-full ml-12">
+        <job classes="w-9/12 ml-2 sm:ml-4 md:ml-4 lg:ml-48 mt-12 mb-20" />
+        <div class="w-full ml-2 sm:ml-4 md:ml-4 lg:ml-12">
           <icons-arrow-job-3 />
         </div>
-        <job classes="w-9/12 ml-48 mt-12 mb-20" />
+        <job classes="w-9/12 ml-2 sm:ml-4 md:ml-4 lg:ml-48 mt-12 mb-20" />
       </div>
     </div>
 
     <div>
-      <div class="uppercase font-extrabold text-2xl ml-32">Education</div>
-      <div class="my-8 ml-48">
+      <div
+        class="uppercase font-extrabold text-2xl ml-2 sm:ml-4 md:ml-4 lg:ml-32"
+      >
+        Education
+      </div>
+      <div class="my-8 ml-2 sm:ml-4 md:ml-4 lg:ml-48">
         <education />
         <education />
         <education />

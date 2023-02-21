@@ -1,20 +1,25 @@
 import { defineStore } from "pinia";
-
 interface State {
   nav: String;
-  sections: [];
+  sections: [Section];
 }
 
-// interface Section {
-//   name: String;
-//   top: number;
-//   bottom: number;
-// }
+interface Section {
+  name: String;
+  top: number;
+  bottom: number;
+}
 
 export const useNavStore = defineStore("nav", {
   state: (): State => ({
     nav: "Home",
-    sections: [],
+    sections: [
+      {
+        name: "Home",
+        top: 0,
+        bottom: 0,
+      },
+    ],
   }),
 
   getters: {
@@ -28,18 +33,17 @@ export const useNavStore = defineStore("nav", {
     },
     slideToSection(newNav: String) {
       const scrollToIndex = this.sections.findIndex(
-        (section) => section.name === newNav.toLowerCase()
+        (section: Section) => section?.name === newNav.toLowerCase()
       );
       if (scrollToIndex >= 0) {
         const scrollToTop = this.sections[scrollToIndex].top;
-        console.log(scrollToTop)
         window.scrollTo({
           top: scrollToTop,
           behavior: "smooth",
         });
       }
     },
-    setSections(sections: []) {
+    setSections(sections: [Section]) {
       this.sections = sections;
     },
   },

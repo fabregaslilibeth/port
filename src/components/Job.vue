@@ -1,18 +1,18 @@
 <template>
   <div :class="classes">
-    <p class="text-accent font-extrabold text-xl">Full stack Developer</p>
-    <p class="font-semibold text-md">Acquire BPO</p>
-    <p class="font-semibold text-md">Aug 2022 - Jan 2023</p>
+    <p class="text-accent font-extrabold md:text-xl">Full stack Developer</p>
+    <p class="md:font-semibold md:text-md">Acquire BPO</p>
+    <p class="md:font-semibold md:text-md">Aug 2022 - Jan 2023</p>
     <div class="ml-4">
       <div class="flex space-x-3 items-center my-4">
-        <icons-bullet />
+        <div class="shrink-0"><icons-bullet /></div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
           aperiam fugit saepe natus. Quas nam ipsa eum error aut minus.
         </p>
       </div>
       <div class="flex space-x-3 items-center my-4">
-        <icons-bullet />
+        <div class="shrink-0"><icons-bullet /></div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
           aperiam fugit saepe natus. Quas nam ipsa eum error aut minus.
